@@ -11,15 +11,18 @@ var getURLSearchParams = function(url) {
 
 var hasSameShape = function(objectOne, objectTwo) {
   if (Object.keys(objectOne).length !== Object.keys(objectTwo).length) {
+    console.log('comparing keys');
     return false;
   }
 
   for (var key in objectOne) {
     if (!key in objectTwo) {
+      conosole.log('keys are not in the same obj');
       return false;
     }
 
     if (typeof objectOne[key] !== typeof objectTwo[key]) {
+      console.log('the types of do not match');
       return false;
     }
 
@@ -77,7 +80,8 @@ describe('searchYouTube', function() {
     xhr.restore();
 
     searchYouTube(options, (data) => {
-      expect(hasSameShape(data, window.exampleVideoData)).to.be.true;
+      console.log('data in spec: ', data);
+      expect(hasSameShape(data.items, window.exampleVideoData)).to.be.true;
       done();
     });
   });
