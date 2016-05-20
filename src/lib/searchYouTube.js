@@ -14,7 +14,7 @@ var searchYouTube = (options, callback) => {
     type: 'video',
     videoEmbeddable: 'true'
   })
-  .done((data) => { callback(data.items); })
+  .done((data) => { console.log(data.items[0]); callback(data.items); })
   .fail((err) => { console.error('There was an error! ', err); });
 };
 

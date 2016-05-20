@@ -1,10 +1,27 @@
 class App extends React.Component {  
-  constructor () {
-    super();
+  constructor (props) {
+    super(props);
     this.state = {
-      videos: exampleVideoData,
-      currentVideo: exampleVideoData[0]
+      videos: [],
+      currentVideo: null
     };
+  }
+  
+  componentDidMount() {
+    this.fetchYouTube('learn javascript');
+  }
+  
+  fetchYouTube (query) {
+    let options = {
+      query: query,
+      key: YOUTUBE_API_KEY
+    };
+    this.props.searchYouTube(options, (videos) => {
+      this.setState({
+        videos: videos, 
+        currentVideo: videos[0]
+      });
+    });
   }
   
   handleVideoClick (video) {
