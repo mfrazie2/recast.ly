@@ -33,7 +33,7 @@ class App extends React.Component {
   render () { 
     return (
     <div>
-      <Nav />
+      <Nav handleSearchChange={_.debounce((input) => this.fetchYouTube(input), 500)} />
       <div className="col-md-7">
         <VideoPlayer video={ this.state.currentVideo } />
       </div>
